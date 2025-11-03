@@ -12,8 +12,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // ✅ So production build has readable stack traces
   build: {
-    sourcemap: true,
+    sourcemap: true, // helps if anything breaks again
   },
 });

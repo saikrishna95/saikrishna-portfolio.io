@@ -1,45 +1,25 @@
-// src/App.tsx
-import { Routes, Route } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-
-import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import Index from "@/pages/Index";
-import NotFound from "@/pages/NotFound";
-
-const queryClient = new QueryClient();
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        {/* Global toasts */}
-        <Toaster />
-        <Sonner />
+    <div style={{ fontFamily: "system-ui, sans-serif", padding: 24 }}>
+      <h1>It works! 🎉</h1>
+      <p>
+        If you can see this, GitHub Pages + Vite base are configured correctly.
+        Now add your components back one by one.
+      </p>
 
-        {/* Global Navigation */}
-        <Navigation />
+      <nav style={{ display: "flex", gap: 12, margin: "16px 0" }}>
+        <Link to="/">Home</Link>
+        <Link to="/skills">Skills</Link>
+      </nav>
 
-        {/* Routes (HashRouter is provided in main.tsx) */}
-        <Routes>
-          {/* Home */}
-          <Route
-            path="/"
-            element={
-              <>
-                <Hero />
-                <Index />
-              </>
-            }
-          />
-
-          {/* Catch-all */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </TooltipProvider>
-    </QueryClientProvider>
+      <Routes>
+        <Route path="/" element={<div>Home route</div>} />
+        <Route path="/skills" element={<div>Skills route</div>} />
+        <Route path="*" element={<div>Not Found</div>} />
+      </Routes>
+    </div>
   );
 }
